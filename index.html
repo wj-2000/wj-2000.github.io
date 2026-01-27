@@ -8,22 +8,49 @@
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
-      <style>
-        body {
-          background: linear-gradient(135deg, #f0f4f8, #e0e7ff);
-          font-family: "Helvetica", sans-serif;
-          color: #111;
-        
-          /* 花边 */
-          border: 10px solid #cfd8dc; /* 浅灰色边框 */
-          padding: 10px; /* 内容不要紧贴边框 */
-          margin: 10px auto;
-          max-width: 820px;
-          box-sizing: border-box;
-          border-radius: 12px; /* 圆角更柔和 */
+    <style>
+      body {
+        background: linear-gradient(135deg, #f0f4f8, #e0e7ff);
+        font-family: "Helvetica", sans-serif;
+        color: #111;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* ===== 星星样式 ===== */
+      .star {
+        position: fixed;
+        pointer-events: none;
+        width: 8px;
+        height: 8px;
+        background: rgba(255, 215, 0, 0.9);
+        clip-path: polygon(
+          50% 0%,
+          61% 35%,
+          98% 35%,
+          68% 57%,
+          79% 91%,
+          50% 70%,
+          21% 91%,
+          32% 57%,
+          2% 35%,
+          39% 35%
+        );
+        animation: sparkle 0.8s ease-out forwards;
+        z-index: 9999;
+      }
+
+      @keyframes sparkle {
+        0% {
+          transform: scale(0.4) rotate(0deg);
+          opacity: 1;
         }
-      </style>
-    
+        100% {
+          transform: scale(1.2) rotate(90deg);
+          opacity: 0;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -35,7 +62,12 @@
           <td style="padding:16px;width:100%;vertical-align:middle;text-align:center;">
             <p class="name">Jing Wang</p>
             <p>
-              I'm a PhD candidate in Electrical and Computer Engineering at <a href="https://www.rice.edu/">Rice University</a> in Houston, specializing in computational imaging and meta-optics. I was advised by <a href="https://profiles.rice.edu/faculty/ashok-veeraraghavan">Prof. Ashok Veeraraghavan</a> in <a href="https://computationalimaging.rice.edu/team/">Rice Computational Imaging Group</a>.
+              I'm a PhD candidate in Electrical and Computer Engineering at
+              <a href="https://www.rice.edu/">Rice University</a> in Houston,
+              specializing in computational imaging and meta-optics.
+              I was advised by
+              <a href="https://profiles.rice.edu/faculty/ashok-veeraraghavan">Prof. Ashok Veeraraghavan</a>
+              in <a href="https://computationalimaging.rice.edu/team/">Rice Computational Imaging Group</a>.
             </p>
             <p>
               <a href="mailto:jw157@rice.edu">Email</a> &nbsp;/&nbsp;
@@ -50,8 +82,13 @@
           <td style="padding:16px;width:100%;vertical-align:top;">
             <h2>My Research</h2>
             <p>
-              My research focuses on computational imaging system with meta-optics, combining metalens imaging system design, wave propagation modeling, computational image reconstruction with deep learning–based algorithms as well as experiment testing. I enjoy tackling complex problems in optical and computational imaging, combining physics, algorithm design, and experimental techniques, and contributing to collaborative research environments. <br><br>
-              I began my research during my undergraduate studies at Sun Yat-sen University, where I worked on integrated photonics device design. This experience helped me realize how much I enjoy research, which led me to pursue a Ph.D.
+              My research focuses on computational imaging system with meta-optics,
+              combining metalens imaging system design, wave propagation modeling,
+              computational image reconstruction with deep learning–based algorithms
+              as well as experiment testing.
+              <br><br>
+              I began my research during my undergraduate studies at Sun Yat-sen University,
+              where I worked on integrated photonics device design.
             </p>
           </td>
         </tr>
@@ -87,7 +124,7 @@
                   <a href="https://www.nature.com/articles/s41467-025-65188-y">paper</a> /
                   <a href="bibfiles/wang2025golay.bib" download>BibTeX</a>
                   <p>
-                    We present a Golay-coded metalens combined with sparse aperture computational imaging to enable long-range, large-aperture thermal imaging with significantly reduced system complexity.
+                    We present a Golay sparse-aperture metalens computational imaging approach that overcomes the bulk, weight, and cost limitations of conventional long-range mid-wave infrared (MWIR) optics, achieving high-resolution, near-diffraction-limited imaging in a compact and lightweight form factor.
                   </p>
                 </td>
               </tr>
@@ -100,12 +137,31 @@
           <td style="padding:16px;width:100%;vertical-align:top;">
             <h2>Outside My Research</h2>
             <p>
-              Outside of research, I am a classical piano enthusiast, which is a fulfilling way to spend my spare time. My favorite composer is Frédéric Chopin, and the majority of my repertoire consists of his works.
+              Outside of research, I am a classical piano enthusiast.
+              My favorite composer is Frédéric Chopin.
             </p>
           </td>
         </tr>
 
       </tbody>
     </table>
+
+    <!-- ===== 星星 JS ===== -->
+    <script>
+      document.addEventListener("mousemove", (e) => {
+        const star = document.createElement("div");
+        star.className = "star";
+
+        star.style.left = e.clientX + "px";
+        star.style.top = e.clientY + "px";
+
+        document.body.appendChild(star);
+
+        setTimeout(() => {
+          star.remove();
+        }, 800);
+      });
+    </script>
   </body>
 </html>
+
